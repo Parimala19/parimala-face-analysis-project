@@ -1,3 +1,4 @@
+--upgrade --no-cache-dir
 streamlit
 tensorflow==2.16.1
 keras==2.16.0
