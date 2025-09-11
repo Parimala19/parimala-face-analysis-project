@@ -1,9 +1,7 @@
 --upgrade --no-cache-dir
 streamlit
 tensorflow==2.16.1
-keras==2.16.0
-opencv-python-headless
+opencv-python-headless==4.8.1.78
 numpy
 pandas
 Pillow
-dlib-bin
