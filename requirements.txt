@@ -3,6 +3,6 @@ tensorflow
 numpy
 opencv-python-headless
 pillow
-dlib
+dlib==19.24.2
 requests
 bz2file
