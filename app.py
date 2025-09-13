@@ -6,10 +6,10 @@ import cv2
 import pandas as pd
 from io import BytesIO
 
-st.set_page_config(page_title="Face Analysis Demo", layout="wide")
+st.set_page_config(page_title="Face Analysis", layout="wide")
 
 st.markdown("<h1 style='text-align:center;'>Face Analysis Demo</h1>", unsafe_allow_html=True)
-st.write("Upload an image to predict age and skin type. The system will mark detected faces.")
+st.write("Upload an image to predict age and skin type.")
 
 @st.cache_resource
 def load_models():
