@@ -23,7 +23,9 @@ age_model, skin_model = load_models()
 if "logs" not in st.session_state:
     st.session_state.logs = pd.DataFrame(columns=["Age", "SkinType"])
 
-skin_classes = ["Wrinkles", "Dark Spots", "Clear Skin", "Puffy Eyes"]
+# Correct order of classes as per LabelEncoder
+skin_classes = ["Clear Skin", "Dark Spots", "Puffy Eyes", "Wrinkles"]
+
 
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
