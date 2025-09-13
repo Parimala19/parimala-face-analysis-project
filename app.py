@@ -8,7 +8,7 @@ from io import BytesIO
 
 st.set_page_config(page_title="Face Analysis", layout="wide")
 
-st.markdown("<h1 style='text-align:center;'>Face Analysis Demo</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align:center;'>Face Analysis</h1>", unsafe_allow_html=True)
 st.write("Upload an image to predict age and skin type.")
 
 @st.cache_resource
