@@ -18,11 +18,12 @@ else:
     bg_gradient = "#dff1ff"
     font_color = "#4B9CD3"
 
-# ---------- CSS (Glassmorphism + Theme) ----------
+# ---------- CSS ----------
 st.markdown(f"""
     <style>
-    body {{
+    .app-container {{
         background: linear-gradient(135deg, {bg_gradient}, #ffffff);
+        padding: 1rem;
         font-family: "Segoe UI", sans-serif;
         color: {font_color};
     }}
@@ -56,7 +57,8 @@ st.markdown(f"""
         text-align:center;
     }}
     </style>
-""", unsafe_allow_html=True)
+    <div class='app-container'>
+    """, unsafe_allow_html=True)
 
 # ---------- HEADER ----------
 st.markdown(
@@ -101,13 +103,12 @@ if uploaded_file is not None:
     skin_index = np.argmax(skin_pred[0])
     skin_type = skin_classes[skin_index]
 
-    # Annotate image with OpenCV
+    # Annotate image
     img_cv = np.array(image)
     img_cv = cv2.cvtColor(img_cv, cv2.COLOR_RGB2BGR)
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     faces = face_cascade.detectMultiScale(img_cv, scaleFactor=1.1, minNeighbors=5, minSize=(60, 60))
 
-    # If no face detected, still write text on top left
     if len(faces) == 0:
         cv2.putText(img_cv, f"{age_value}, {skin_type}", (20, 40),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
@@ -119,11 +120,13 @@ if uploaded_file is not None:
 
     result_image = Image.fromarray(cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB))
 
-    # ---------- Display Tabs ----------
-    tab1, tab2 = st.tabs(["🖼️ Original", "📝 Annotated"])
-    with tab1:
+    # ---------- Display Side by Side ----------
+    col_img1, col_img2 = st.columns(2)
+    with col_img1:
+        st.subheader("Original")
         st.image(image, use_column_width=True)
-    with tab2:
+    with col_img2:
+        st.subheader("Annotated")
         st.image(result_image, use_column_width=True)
 
     # ---------- Metrics ----------
@@ -150,3 +153,6 @@ if uploaded_file is not None:
         csv = st.session_state.logs.to_csv(index=False)
         st.download_button("⬇️ Predictions CSV", data=csv,
                            file_name="predictions_log.csv", mime="text/csv")
+
+# close the top-level div
+st.markdown("</div>", unsafe_allow_html=True)
