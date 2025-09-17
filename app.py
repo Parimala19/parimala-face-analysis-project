@@ -10,7 +10,7 @@ from io import BytesIO
 st.set_page_config(page_title="Face Analysis", layout="wide")
 
 # ---------- THEME TOGGLE ----------
-dark_mode = st.toggle("🌗 Dark mode")
+dark_mode = st.toggle(" Dark mode")
 if dark_mode:
     bg_gradient = "#0E1117"
     font_color = "#FAFAFA"
@@ -84,7 +84,7 @@ skin_classes = ["clear face", "dark spots", "puffy eyes", "wrinkles"]
 
 # ---------- Upload Section ----------
 st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
-uploaded_file = st.file_uploader("📤 Choose an image file", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader(" Choose an image file", type=["jpg", "jpeg", "png"])
 st.markdown("</div>", unsafe_allow_html=True)
 
 if uploaded_file is not None:
@@ -141,7 +141,7 @@ if uploaded_file is not None:
     st.session_state.logs = pd.concat([st.session_state.logs, pd.DataFrame([new_row])], ignore_index=True)
 
     # ---------- Downloads ----------
-    st.markdown("### 📥 Download Results")
+    st.markdown("###  Download Results")
     c1, c2 = st.columns(2)
     with c1:
         img_bytes = BytesIO()
